@@ -66,10 +66,10 @@ import java.util.UUID;
 public class PostTweetServlet extends SlingAllMethodsServlet {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PostTweetServlet.class);
-    static String consumerKeyStr = "UsdoPosen4Ls2qNdJTsl73DXW";
-    static String consumerSecretStr = "0p5owSbzsdb1N206x6vcsZvvuPQDRMOMrKVlbaxq0joS2VTAFc";
-    static String accessTokenStr = "1232895727992393728-UOBIDsv4J1gAjFQiQUMsxK6WrNKsfO";
-    static String accessTokenSecretStr = "UxPrifKy43eAR6Y8T5Fgh8Rp1QXbwtUB4DZKzeqALwOT2";
+  /*  static String consumerKeyStr = "";
+    static String consumerSecretStr = "";
+    static String accessTokenStr = "";
+    static String accessTokenSecretStr = "";*/
     @Reference
     private transient ResourceResolverFactory resolverFactory;
 
@@ -112,11 +112,11 @@ public class PostTweetServlet extends SlingAllMethodsServlet {
             LOGGER.info("Shared Link :"+sharedLink);
 
 
-        twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
+      /*  twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
         AccessToken accessToken = new AccessToken(accessTokenStr,
-                accessTokenSecretStr);
+                accessTokenSecretStr);*/
 
-        twitter.setOAuthAccessToken(accessToken);
+      //  twitter.setOAuthAccessToken(accessToken);
           LOGGER.info("Request is :"+request);
 
           Resource res = resolver.getResource(request);
