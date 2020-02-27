@@ -29,6 +29,21 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependency</id>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifactIds>twitter4j-core</includeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>sling-maven-plugin</artifactId>
             </plugin>
@@ -43,12 +58,21 @@
                         </goals>
                         <configuration>
                             <bnd><![CDATA[
-Bundle-Category: hcl
+
 -exportcontents: ${packages;VERSIONED}
 Sling-Model-Packages: hcl.core.models
 -snapshot: ${tstamp;yyyyMMddHHmmssSSS}
-Bundle-DocURL:
-                                ]]></bnd>
+
+                                ]]>
+
+                                <![CDATA[
+Import-Package: javax.annotation;version=0.0.0,!com.google.appengine.api.urlfetch,!android.os,*
+                                ]]>
+
+                                Include-Resource: target/dependency/twitter4j-core-4.0.7.jar
+                                Bundle-ClassPath: ., twitter4j-core-4.0.7.jar
+
+                            </bnd>
                         </configuration>
                     </execution>
                 </executions>
@@ -174,6 +198,13 @@ Bundle-DocURL:
         <dependency>
             <groupId>uk.org.lidalia</groupId>
             <artifactId>slf4j-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>4.0.7</version>
+            <scope>provided</scope>
+
         </dependency>
     </dependencies>
 </project>
